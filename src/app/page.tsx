@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Hero from "@/components/Hero";
 import AboutCollege from "@/components/AboutCollege";
+import DevelopedBy from "@/components/DevelopedBy";
 import StudentForm, { FormData as StudentFormData } from "@/components/StudentForm";
 import { PredictionService, PredictionResponse } from "@/lib/PredictionService";
 import { generatePDF } from "@/lib/pdf-generator";
@@ -16,49 +17,8 @@ export default function HomePage() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleFormSubmit = async (data: StudentFormData) => {
-    // 1. Show loading screen immediately
-    setIsAnalyzing(true);
-    setPredictionResponse(null);
-    setPdfBlobUrl(null);
-    setErrorMsg(null);
-
-    // Scroll to the loading area smoothly
-    setTimeout(() => {
-      document.getElementById("analysis-section")?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-
-    try {
-      // 2. Call Prediction Service
-      const response = await PredictionService.predict({
-        fullName: data.fullName,
-        mobileNumber: data.mobileNumber,
-        exam_type: data.exam_type,
-        pred_mode: data.pred_mode,
-        score: data.score,
-        gender: data.gender,
-        district: data.district,
-        category: data.category,
-        ews: data.ews,
-        tfws: data.tfws,
-        branch: data.branch,
-      });
-
-      // 3. Handle 0 colleges
-      if (!response.predictions || response.predictions.length === 0) {
-        setErrorMsg("Prediction data could not be fetched or no eligible colleges found. Please try again.");
-        return; // Do NOT generate empty PDF
-      }
-
-      setPredictionResponse(response);
-
-      // 4. Automatically generate PDF
-      const url = await generatePDF({ predictionResponse: response });
-      setPdfBlobUrl(url);
-    } catch (error) {
-      console.error("Prediction error:", error);
-      setErrorMsg("An error occurred while fetching predictions. Please try again.");
-    } finally {
-      setIsAnalyzing(false);
+    if (typeof window !== "undefined") {
+      window.open("https://eduvale.in/mht-cet/", "_blank", "noopener,noreferrer");
     }
   };
 
@@ -194,6 +154,9 @@ export default function HomePage() {
       {!isAnalyzing && !pdfBlobUrl && !errorMsg && (
         <StudentForm onSubmitDetails={handleFormSubmit} />
       )}
+
+      {/* Developed By Section */}
+      <DevelopedBy />
     </>
   );
 }
