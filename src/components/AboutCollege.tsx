@@ -9,12 +9,12 @@ export default function AboutCollege() {
   return (
     <section className={styles.container} id="about-section">
       <div className={styles.inner}>
-        
+
         {/* Section 1: Simple Two-Column Layout (MITCORER Information Card) */}
         <div className={styles.splitRow}>
-          
+
           {/* Left Side: Heading and description */}
-          <motion.div 
+          <motion.div
             className={styles.textContent}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -26,7 +26,7 @@ export default function AboutCollege() {
               MIT College of Railway Engineering and Research, Barshi
             </h2>
             <div className="red-divider" style={{ margin: "12px 0 20px" }} />
-            
+
             <div className={styles.paragraphContainer}>
               <p className={styles.paragraph}>
                 MIT Group has launched &ldquo;MIT College of Railway Engineering and Research&rdquo; (MITCORER) at Barshi, Dist. Solapur.
@@ -39,9 +39,9 @@ export default function AboutCollege() {
               </p>
             </div>
           </motion.div>
-          
+
           {/* Right Side: Existing campus building image */}
-          <motion.div 
+          <motion.div
             className={styles.imageColumn}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -88,7 +88,7 @@ export default function AboutCollege() {
             About MIT College of Railway Engineering &amp; Research, Barshi
           </h2>
           <div className={`${styles.dividerCenter} red-divider`} />
-          
+
           {/* Main Showcase Dome Image */}
           <div className={styles.largeImageWrapper}>
             <Image
