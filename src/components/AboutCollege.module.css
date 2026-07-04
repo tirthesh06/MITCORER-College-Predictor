@@ -1,4 +1,4 @@
-.section {
+.container {
   padding: 80px 24px;
   background: var(--bg);
   border-top: 1px solid var(--card-border);
@@ -9,28 +9,57 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 70px;
 }
 
-.header {
+/* Two-column layout */
+.splitRow {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.textContent {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  text-align: left;
 }
 
-/* Banner Image styles */
-.bannerWrapper {
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin-top: 8px;
+}
+
+.paragraphContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.paragraph {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.imageColumn {
   width: 100%;
+}
+
+.imageWrapper {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--card-border);
-  position: relative;
   background: var(--gray-50);
 }
 
-.bannerImage {
+.image {
   width: 100%;
   height: auto;
   display: block;
@@ -38,47 +67,102 @@
   transition: transform 0.4s ease;
 }
 
-.bannerWrapper:hover .bannerImage {
-  transform: scale(1.01);
+.imageWrapper:hover .image {
+  transform: scale(1.02);
 }
 
-/* Text Content styles */
-.textContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 850px;
-  margin: 0 auto;
+/* Highlight boxes */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.highlightCard {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
   text-align: left;
-  padding: 0 10px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
 }
 
-.textTitle {
-  font-size: 22px;
-  font-weight: 800;
+.highlightCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--mit-red);
+}
+
+.highlightIcon {
+  width: 36px;
+  height: 36px;
+  color: var(--mit-red);
+  margin-bottom: 16px;
+}
+
+.highlightCard h4 {
+  font-size: 16px;
+  font-weight: 700;
   color: var(--text-primary);
-  line-height: 1.35;
-  border-bottom: 2px solid var(--mit-red);
-  padding-bottom: 8px;
-  align-self: flex-start;
+  margin: 0 0 8px 0;
 }
 
-.paragraph {
-  font-size: 15px;
+.highlightCard p {
+  font-size: 13.5px;
   color: var(--text-secondary);
-  line-height: 1.8;
+  line-height: 1.6;
   margin: 0;
 }
 
-/* Secondary Image styles */
-.secondaryImageWrapper {
+/* Full Width Section */
+.fullWidthSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-top: 1px solid var(--card-border);
+  padding-top: 50px;
+}
+
+.titleCenter {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0;
+}
+
+.dividerCenter {
+  margin: 0 auto;
+}
+
+.largeImageWrapper {
   width: 100%;
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--card-border);
   background: var(--gray-50);
+}
+
+.aboutTextColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
   margin-top: 10px;
+}
+
+/* Secondary Showcase */
+.secondaryShowcase {
+  width: 100%;
+}
+
+.secondaryImageWrapper {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--card-border);
+  background: var(--gray-50);
 }
 
 .secondaryImage {
@@ -93,29 +177,51 @@
   transform: scale(1.01);
 }
 
-/* Dark mode tweaks (ensure images stay clear and vibrant) */
-[data-theme="dark"] .bannerWrapper,
+/* Dark mode compatibility fixes */
+[data-theme="dark"] .imageWrapper,
+[data-theme="dark"] .largeImageWrapper,
 [data-theme="dark"] .secondaryImageWrapper {
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Responsive media queries */
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .splitRow {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .highlights {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .aboutTextColumns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 @media (max-width: 768px) {
-  .section {
+  .container {
     padding: 50px 16px;
   }
   
   .inner {
-    gap: 30px;
+    gap: 48px;
   }
   
-  .textTitle {
-    font-size: 18px;
+  .highlights {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   
-  .paragraph {
-    font-size: 14px;
-    line-height: 1.7;
+  .titleCenter {
+    font-size: 20px;
   }
 }
