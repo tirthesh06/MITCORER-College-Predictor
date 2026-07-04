@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Hero from "@/components/Hero";
+import AboutCollege from "@/components/AboutCollege";
 import StudentForm, { FormData as StudentFormData } from "@/components/StudentForm";
 import { PredictionService, PredictionResponse } from "@/lib/PredictionService";
 import { generatePDF } from "@/lib/pdf-generator";
@@ -182,6 +183,11 @@ export default function HomePage() {
             </motion.div>
           </div>
         </section>
+      )}
+
+      {/* About College Info and Images */}
+      {!isAnalyzing && !pdfBlobUrl && !errorMsg && (
+        <AboutCollege />
       )}
 
       {/* Student Form (only show if not analyzing and no results/errors) */}
