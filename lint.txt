@@ -1,0 +1,110 @@
+
+> mitcorer-predictor@0.1.0 lint
+> eslint
+
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\MITCORER-College-Predictor-main\src\app\admin\developers\DeveloperPageClient.tsx
+  4:30  warning  'Shield' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\MITCORER-College-Predictor-main\src\app\api\predict\route.ts
+   5:13  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  59:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\MITCORER-College-Predictor-main\src\app\layout.tsx
+  37:9  warning  Custom fonts not added in `pages/_document.js` will only load for a single page. This is discouraged. See: https://nextjs.org/docs/messages/no-page-custom-font  @next/next/no-page-custom-font
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\MITCORER-College-Predictor-main\src\components\StudentForm.tsx
+   3:19  warning  'Controller' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+   7:57  warning  'CheckSquare' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  52:5   warning  'control' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  68:20  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\MITCORER-College-Predictor-main\src\components\StudentForm.tsx:68:20
+  66 |   });
+  67 |
+> 68 |   const category = watch("category");
+     |                    ^^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
+  69 |   const exam_type = watch("exam_type");
+  70 |   const isEwsEligible = category === "OPEN";
+  71 |   const isTfwsEligible = exam_type !== "JEE"; // Assuming TFWS is more relevant for MHT-CET, though rules may vary  react-hooks/incompatible-library
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\MITCORER-College-Predictor-main\src\components\ThemeProvider.tsx
+  22:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\MITCORER-College-Predictor-main\src\components\ThemeProvider.tsx:22:7
+  20 |     const stored = localStorage.getItem("mitcorer-theme") as Theme | null;
+  21 |     if (stored === "dark" || stored === "light") {
+> 22 |       setTheme(stored);
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  23 |     }
+  24 |     setMounted(true);
+  25 |   }, []);  react-hooks/set-state-in-effect
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\next.config.ts
+   1:15  warning  'NextConfig' is defined but never used    @typescript-eslint/no-unused-vars
+  36:21  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  49:6   error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\src\app\admin\developers\DeveloperPageClient.tsx
+  4:30  warning  'Shield' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\src\app\api\predict\route.ts
+    5:13  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+   49:5   warning  'responseHeaders' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   58:27  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  212:15  warning  'avgNumeric' is assigned a value but never used       @typescript-eslint/no-unused-vars
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\src\app\layout.tsx
+  37:9  warning  Custom fonts not added in `pages/_document.js` will only load for a single page. This is discouraged. See: https://nextjs.org/docs/messages/no-page-custom-font  @next/next/no-page-custom-font
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\src\app\page.tsx
+   8:10  warning  'PredictionService' is defined but never used        @typescript-eslint/no-unused-vars
+   9:10  warning  'generatePDF' is defined but never used              @typescript-eslint/no-unused-vars
+  14:23  warning  'setIsAnalyzing' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  19:35  warning  'data' is defined but never used                     @typescript-eslint/no-unused-vars
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\src\components\StudentForm.tsx
+   3:19  warning  'Controller' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+   7:57  warning  'CheckSquare' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  52:5   warning  'control' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  68:20  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\src\components\StudentForm.tsx:68:20
+  66 |   });
+  67 |
+> 68 |   const category = watch("category");
+     |                    ^^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
+  69 |   const exam_type = watch("exam_type");
+  70 |   const isEwsEligible = category === "OPEN";
+  71 |   const isTfwsEligible = exam_type !== "JEE"; // Assuming TFWS is more relevant for MHT-CET, though rules may vary  react-hooks/incompatible-library
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\src\components\ThemeProvider.tsx
+  22:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Lenovo\Downloads\MITCORER-College-Predictor-main\src\components\ThemeProvider.tsx:22:7
+  20 |     const stored = localStorage.getItem("mitcorer-theme") as Theme | null;
+  21 |     if (stored === "dark" || stored === "light") {
+> 22 |       setTheme(stored);
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  23 |     }
+  24 |     setMounted(true);
+  25 |   }, []);  react-hooks/set-state-in-effect
+
+✖ 27 problems (8 errors, 19 warnings)
+

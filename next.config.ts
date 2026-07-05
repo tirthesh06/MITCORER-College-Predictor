@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
 import path from "path";
 
-const nextConfig = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const nextConfig: any = {
   // Allow images from external sources
   images: {
     remotePatterns: [
@@ -33,6 +33,7 @@ const nextConfig = {
       },
     ];
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   webpack: (config: any) => {
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -46,6 +47,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-} as any;
+};
 
 export default nextConfig;

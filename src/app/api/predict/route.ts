@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server';
 import * as cheerio from 'cheerio';
 
 export async function POST(request: Request) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let body: any;
   let html = '';
   let responseStatus = 0;
-  let responseHeaders = {};
 
   try {
     body = await request.json();
@@ -46,7 +46,6 @@ export async function POST(request: Request) {
     });
 
     responseStatus = response.status;
-    responseHeaders = Object.fromEntries(response.headers.entries());
 
     if (!response.ok) {
       throw new Error(`Failed to fetch from prediction engine: ${response.statusText}`);
@@ -55,6 +54,7 @@ export async function POST(request: Request) {
     html = await response.text();
     const $ = cheerio.load(html);
     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rawPredictions: any[] = [];
     
     // Parse the student's score for intelligent filtering
@@ -209,6 +209,7 @@ export async function POST(request: Request) {
 
     // Re-assign rank and remove internal avgNumeric field
     const predictions = filteredPredictions.map((p, idx) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { avgNumeric, ...rest } = p;
       return { ...rest, rank: idx + 1, collegeCode: 'N/A' };
     });

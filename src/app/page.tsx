@@ -5,20 +5,19 @@ import Hero from "@/components/Hero";
 import AboutCollege from "@/components/AboutCollege";
 import DevelopedBy from "@/components/DevelopedBy";
 import StudentForm, { FormData as StudentFormData } from "@/components/StudentForm";
-import { PredictionService, PredictionResponse } from "@/lib/PredictionService";
-import { generatePDF } from "@/lib/pdf-generator";
+import { PredictionResponse } from "@/lib/PredictionService";
 import { motion } from "framer-motion";
 import { Download, Share2, RefreshCcw, FileText, AlertCircle } from "lucide-react";
 
 export default function HomePage() {
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isAnalyzing] = useState(false);
   const [predictionResponse, setPredictionResponse] = useState<PredictionResponse | null>(null);
   const [pdfBlobUrl, setPdfBlobUrl] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleFormSubmit = async (data: StudentFormData) => {
+  const handleFormSubmit = async () => {
     if (typeof window !== "undefined") {
-      window.open("https://eduvale.in/mht-cet/", "_blank", "noopener,noreferrer");
+      window.open("https://eduvale.in/mht-cet/college-predictor/", "_blank", "noopener,noreferrer");
     }
   };
 

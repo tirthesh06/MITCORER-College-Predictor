@@ -1,14 +1,15 @@
 "use client";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { User, BarChart2, BookOpen, MapPin, Phone, Tag, CheckSquare } from "lucide-react";
+import { User, BarChart2, BookOpen, MapPin, Tag, Mail } from "lucide-react";
 import styles from "./StudentForm.module.css";
 
 const schema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters").max(100, "Name too long"),
+  emailAddress: z.string().email("Enter a valid email address").min(1, "Email Address is required"),
   exam_type: z.string().min(1, "Please select an exam type"),
   pred_mode: z.string().min(1, "Please select a prediction mode"),
   score: z.string().min(1, "Score is required").max(10, "Too long"),
@@ -18,7 +19,6 @@ const schema = z.object({
   ews: z.boolean().optional(),
   tfws: z.boolean().optional(),
   branch: z.array(z.string()).optional(),
-  mobileNumber: z.string().regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit mobile number"),
 });
 
 export type FormData = z.infer<typeof schema>;
@@ -37,7 +37,7 @@ const DISTRICTS = [
 const BRANCHES = [
   "Computer Engineering", "Information Technology", "Artificial Intelligence and Data Science",
   "Mechanical Engineering", "Civil Engineering", "Electrical Engineering", 
-  "Electronics and Telecommunication Engg", "Chemical Engineering"
+  "Electronics and Telecommunication Engineering", "Chemical Engineering"
 ];
 
 interface StudentFormProps {
@@ -49,11 +49,12 @@ export default function StudentForm({ onSubmitDetails }: StudentFormProps) {
     register,
     handleSubmit,
     watch,
-    control,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
+      fullName: "",
+      emailAddress: "",
       exam_type: "MHT-CET",
       pred_mode: "percentile",
       gender: "Male",
@@ -65,7 +66,9 @@ export default function StudentForm({ onSubmitDetails }: StudentFormProps) {
     }
   });
 
+  // eslint-disable-next-line
   const category = watch("category");
+  // eslint-disable-next-line
   const exam_type = watch("exam_type");
   const isEwsEligible = category === "OPEN";
   const isTfwsEligible = exam_type !== "JEE"; // Assuming TFWS is more relevant for MHT-CET, though rules may vary
@@ -127,22 +130,21 @@ export default function StudentForm({ onSubmitDetails }: StudentFormProps) {
                 {errors.fullName && <span className="form-error">{errors.fullName.message}</span>}
               </div>
 
-              {/* Mobile Number */}
+              {/* Email Address */}
               <div className="form-group">
-                <label className="form-label" htmlFor="mobileNumber">
-                  <Phone size={13} style={{ display: "inline", marginRight: 4 }} />
-                  Mobile Number <span style={{ color: "var(--mit-red)" }}>*</span>
+                <label className="form-label" htmlFor="emailAddress">
+                  <Mail size={13} style={{ display: "inline", marginRight: 4 }} />
+                  Email Address <span style={{ color: "var(--mit-red)" }}>*</span>
                 </label>
                 <input
-                  id="mobileNumber"
+                  id="emailAddress"
                   className="form-input"
-                  type="tel"
-                  placeholder="e.g., 9876543210"
-                  maxLength={10}
-                  {...register("mobileNumber")}
-                  aria-invalid={!!errors.mobileNumber}
+                  type="email"
+                  placeholder="e.g., rahul@example.com"
+                  {...register("emailAddress")}
+                  aria-invalid={!!errors.emailAddress}
                 />
-                {errors.mobileNumber && <span className="form-error">{errors.mobileNumber.message}</span>}
+                {errors.emailAddress && <span className="form-error">{errors.emailAddress.message}</span>}
               </div>
 
               {/* Exam Type */}

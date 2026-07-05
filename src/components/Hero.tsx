@@ -9,6 +9,12 @@ export default function Hero() {
     document.getElementById("student-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleStartPrediction = () => {
+    if (typeof window !== "undefined") {
+      window.open("https://eduvale.in/mht-cet/", "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <section className={styles.hero} id="hero" aria-labelledby="hero-title">
       {/* Background decoration */}
@@ -134,7 +140,7 @@ export default function Hero() {
             </div>
             <button
               className={styles.panelBtn}
-              onClick={scrollToLearnMore}
+              onClick={handleStartPrediction}
               id="panel-start-btn"
             >
               Start Prediction Now →

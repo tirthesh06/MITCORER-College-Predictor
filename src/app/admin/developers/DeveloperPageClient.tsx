@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, Globe, Shield, Code2, ExternalLink } from "lucide-react";
+import { Phone, Mail, Globe, Code2, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import styles from "./DeveloperPage.module.css";
 

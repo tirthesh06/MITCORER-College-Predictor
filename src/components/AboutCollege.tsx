@@ -121,20 +121,7 @@ export default function AboutCollege() {
           </div>
         </div>
 
-        {/* Section 3: Dome front/perspective secondary showcase */}
-        <div className={styles.secondaryShowcase}>
-          <div className={styles.secondaryImageWrapper}>
-            <Image
-              src="/campus-perspective.png"
-              alt="MIT College of Railway Engineering and Research Showcase View"
-              width={1200}
-              height={450}
-              className={styles.secondaryImage}
-              loading="lazy"
-              sizes="100vw"
-            />
-          </div>
-        </div>
+
 
       </div>
     </section>
